@@ -8,7 +8,8 @@ namespace MC
 		{
 			InitializeComponent();
 
-			MainPage = new LoadingPage();
+			//MainPage = new LoadingPage();
+			MainPage = new LoginPage();
 		}
 
 		protected override void OnStart()
