@@ -2,9 +2,9 @@
 
 namespace MC
 {
-	public partial class MCPage : ContentPage
+	public partial class LoadingPage : ContentPage
 	{
-		public MCPage()
+		public LoadingPage()
 		{
 			InitializeComponent();
 		}
