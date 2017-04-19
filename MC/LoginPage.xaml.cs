@@ -14,8 +14,10 @@ namespace MC
             ViewModel = new LoginVM();
 
             this.Bind(ViewModel, vm => vm.Username, v => v.Username.Text);
+			/*
             this.Bind(ViewModel, vm => vm.Password, v => v.Password.Text);
             this.BindCommand(ViewModel, vm => vm.Login, v => v.Login);
+            */
 		}
 
         // Boilerplate code.
