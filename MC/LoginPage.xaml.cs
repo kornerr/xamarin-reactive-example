@@ -1,24 +1,31 @@
 ﻿using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using Xamarin.Forms;
 
 namespace MC
 {
-	public partial class LoginPage : ContentPage, IViewFor<LoginVM>
-	{
-		public LoginPage()
-		{
-			InitializeComponent();
+    public partial class LoginPage : ContentPage, IViewFor<LoginVM>
+    {
+        public LoginPage()
+        {
+            InitializeComponent();
 
             ViewModel = new LoginVM();
 
             this.Bind(ViewModel, vm => vm.Username, v => v.Username.Text);
-			/*
             this.Bind(ViewModel, vm => vm.Password, v => v.Password.Text);
             this.BindCommand(ViewModel, vm => vm.Login, v => v.Login);
-            */
-		}
+			this.WhenAnyValue(x => x.ViewModel.IsLoading)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(busy =>
+                    {
+                        Username.IsEnabled = !busy;
+                        Password.IsEnabled = !busy;
+                        Loading.IsVisible = busy;
+                    });
+        }
 
         // Boilerplate code.
 
@@ -40,6 +47,6 @@ namespace MC
             get { return ViewModel; }
             set { ViewModel = (LoginVM)value; }
         }
-	}
+    }
 }
 

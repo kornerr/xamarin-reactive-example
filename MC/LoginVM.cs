@@ -1,17 +1,12 @@
 ﻿using ReactiveUI;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MC
 {
 	public class LoginVM : ReactiveObject
 	{
-
-        public LoginVM()
-        {
-
-        }
-
         public ReactiveCommand Login { get; protected set; }
 
         // Read-write property.
@@ -36,6 +31,29 @@ namespace MC
         {
             get { return _isLoading.Value; }
         }
+
+        public LoginVM()
+        {
+            var canLogin =
+                this.WhenAnyValue(
+                    x => x.Username,
+                    x => x.Password,
+                    (us, pa) =>
+                        {
+                            bool IsUsernameValid = !String.IsNullOrWhiteSpace(us);
+                            bool IsPasswordValid = !String.IsNullOrWhiteSpace(pa);
+                            return IsUsernameValid && IsPasswordValid;
+                        });
+            Login =
+                ReactiveCommand.CreateFromTask(
+                    async(arg) =>
+                        {
+                            await Task.Delay(4000).ConfigureAwait(false);
+                        },
+					canLogin);
+            Login.IsExecuting.ToProperty(this, x => x.IsLoading, out _isLoading);
+        }
+
 	}
 }
 

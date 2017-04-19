@@ -17,6 +17,9 @@
 				Text="Login"
 				TextColor="White"
                 BackgroundColor="#3060DD" />
+            <Label
+                x:Name="Loading"
+                Text="Loading..." />
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
