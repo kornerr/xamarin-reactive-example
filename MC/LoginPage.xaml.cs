@@ -23,7 +23,8 @@ namespace MC
                     {
                         Username.IsEnabled = !busy;
                         Password.IsEnabled = !busy;
-                        Loading.IsVisible = busy;
+                        Processing.IsVisible = busy;
+                        Main.IsVisible = !busy;
                     });
         }
 
