@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using ReactiveUI.XamForms;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,9 +15,14 @@ namespace MC
         Logout
     };
 
-    public partial class LoginPage : ContentPage, IViewFor<LoginVM>
+    public partial class LoginPage : ReactiveContentPage<LoginVM>, IViewFor<LoginVM>
     {
-        public LoginPageSignal signal;
+        LoginPageSignal _signal;
+		public LoginPageSignal Signal
+		{
+			get { return _signal; }
+			set { this.RaiseAndSetIfChanged(ref _signal, value); }
+		}
 
         public LoginPage(LoginVM loginVM)
         {
@@ -37,7 +43,7 @@ namespace MC
                     });
 			Login.Events().Clicked.Subscribe(_ =>
 			{
-				signal = LoginPageSignal.Login;
+				Signal = LoginPageSignal.Login;
 				Debug.WriteLine("LoginPage. Set signal");
 			});
         }

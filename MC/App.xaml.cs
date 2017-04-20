@@ -38,7 +38,7 @@ namespace MC
                 {
                     Debug.WriteLine("App. LoginPage.Login.IsExecuting : {0}", executing);
                 });
-			this.WhenAnyValue(x => x.loginPage.signal)
+			this.WhenAnyValue(x => x.loginPage.Signal)
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Subscribe(signal =>
 			    {
