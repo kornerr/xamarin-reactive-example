@@ -30,15 +30,20 @@ namespace MC
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(busy =>
                 {
-                    Debug.WriteLine("App. LoginVM.IsLoading : {0}" + busy);
+                    Debug.WriteLine("App. LoginVM.IsLoading : {0}", busy);
                 });
             this.WhenAnyValue(x => x.loginVM.Login.IsExecuting)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(executing =>
                 {
-                    Debug.WriteLine("App. LoginPage.Login.IsExecuting : {0}" + executing);
+                    Debug.WriteLine("App. LoginPage.Login.IsExecuting : {0}", executing);
                 });
-
+			this.WhenAnyValue(x => x.loginPage.signal)
+				.ObserveOn(RxApp.MainThreadScheduler)
+				.Subscribe(signal =>
+			    {
+					Debug.WriteLine("App. LoginPage.Signal : {0}", signal);
+			    });
 
             MainPage = loginPage;
         }

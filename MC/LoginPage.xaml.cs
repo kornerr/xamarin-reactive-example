@@ -1,13 +1,23 @@
 ﻿using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reactive.Linq;
 using Xamarin.Forms;
 
 namespace MC
 {
+    public enum LoginPageSignal
+    {
+        None,
+		Login,
+        Logout
+    };
+
     public partial class LoginPage : ContentPage, IViewFor<LoginVM>
     {
+        public LoginPageSignal signal;
+
         public LoginPage(LoginVM loginVM)
         {
             InitializeComponent();
@@ -25,6 +35,11 @@ namespace MC
                         Processing.IsVisible = busy;
                         Main.IsVisible = !busy;
                     });
+			Login.Events().Clicked.Subscribe(_ =>
+			{
+				signal = LoginPageSignal.Login;
+				Debug.WriteLine("LoginPage. Set signal");
+			});
         }
 
         // Boilerplate code.
