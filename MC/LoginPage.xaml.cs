@@ -11,18 +11,18 @@ namespace MC
     public enum LoginPageSignal
     {
         None,
-		Login,
+        Login,
         Logout
     };
 
     public partial class LoginPage : ReactiveContentPage<LoginVM>, IViewFor<LoginVM>
     {
         LoginPageSignal _signal;
-		public LoginPageSignal Signal
-		{
-			get { return _signal; }
-			set { this.RaiseAndSetIfChanged(ref _signal, value); }
-		}
+        public LoginPageSignal Signal
+        {
+            get { return _signal; }
+            set { this.RaiseAndSetIfChanged(ref _signal, value); }
+        }
 
         public LoginPage(LoginVM loginVM)
         {
@@ -41,15 +41,15 @@ namespace MC
                         Processing.IsVisible = busy;
                         Main.IsVisible = !busy;
                     });
-			Login.Events().Clicked.Subscribe(_ =>
-			{
-				Signal = LoginPageSignal.Login;
-				Debug.WriteLine("LoginPage. Set signal");
-			});
+            Login.Events().Clicked.Subscribe(_ =>
+            {
+                Signal = LoginPageSignal.Login;
+                Debug.WriteLine("LoginPage. Set signal");
+            });
         }
 
         // Boilerplate code.
-
+        /*
         public static readonly BindableProperty ViewModelProperty =
             BindableProperty.Create(
                 nameof(ViewModel),
@@ -69,6 +69,7 @@ namespace MC
             get { return ViewModel; }
             set { ViewModel = (LoginVM)value; }
         }
+        */
     }
 }
 
