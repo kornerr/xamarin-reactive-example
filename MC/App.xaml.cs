@@ -1,30 +1,37 @@
-﻿using Xamarin.Forms;
+﻿using ReactiveUI;
+using System.Reactive.Linq;
+using Xamarin.Forms;
 
 namespace MC
 {
-	public partial class App : Application
-	{
-		public App()
-		{
-			InitializeComponent();
+    public partial class App : Application
+    {
+        public LoginVM loginVM;
+        public LoginPage loginPage;
 
-			//MainPage = new LoadingPage();
-			MainPage = new LoginPage();
-		}
+        public App()
+        {
+            InitializeComponent();
 
-		protected override void OnStart()
-		{
-			// Handle when your app starts
-		}
+            loginVM = new LoginVM();
+            loginPage = new LoginPage(loginVM);
 
-		protected override void OnSleep()
-		{
-			// Handle when your app sleeps
-		}
+            MainPage = loginPage;
+        }
 
-		protected override void OnResume()
-		{
-			// Handle when your app resumes
-		}
-	}
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
+
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
+    }
 }

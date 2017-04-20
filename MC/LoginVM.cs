@@ -48,12 +48,12 @@ namespace MC
                 ReactiveCommand.CreateFromTask(
                     async(arg) =>
                         {
+                            // Faked loading.
                             await Task.Delay(4000).ConfigureAwait(false);
                         },
 					canLogin);
             Login.IsExecuting.ToProperty(this, x => x.IsLoading, out _isLoading);
         }
-
 	}
 }
 

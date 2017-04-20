@@ -8,16 +8,15 @@ namespace MC
 {
     public partial class LoginPage : ContentPage, IViewFor<LoginVM>
     {
-        public LoginPage()
+        public LoginPage(LoginVM loginVM)
         {
             InitializeComponent();
 
-            ViewModel = new LoginVM();
-
+            ViewModel = loginVM;
             this.Bind(ViewModel, vm => vm.Username, v => v.Username.Text);
             this.Bind(ViewModel, vm => vm.Password, v => v.Password.Text);
             this.BindCommand(ViewModel, vm => vm.Login, v => v.Login);
-			this.WhenAnyValue(x => x.ViewModel.IsLoading)
+            this.WhenAnyValue(x => x.ViewModel.IsLoading)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(busy =>
                     {
@@ -37,6 +36,7 @@ namespace MC
                 typeof(LoginPage),
                 null,
                 BindingMode.OneWay);
+
         public LoginVM ViewModel
         {
             get { return (LoginVM)GetValue(ViewModelProperty); }
