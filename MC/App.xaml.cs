@@ -1,6 +1,8 @@
 ﻿using ReactiveUI;
 using System.Reactive.Linq;
 using Xamarin.Forms;
+using System.Diagnostics;
+using System;
 
 namespace MC
 {
@@ -15,6 +17,28 @@ namespace MC
 
             loginVM = new LoginVM();
             loginPage = new LoginPage(loginVM);
+
+            loginPage
+                .WhenAnyValue(x => x.ViewModel.IsLoading)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(busy =>
+                {
+                    Debug.WriteLine("App. LoginPage. WhenAnyValue" + busy);
+                });
+
+            this.WhenAnyValue(x => x.loginVM.IsLoading)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(busy =>
+                {
+                    Debug.WriteLine("App. LoginVM.IsLoading : {0}" + busy);
+                });
+            this.WhenAnyValue(x => x.loginVM.Login.IsExecuting)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(executing =>
+                {
+                    Debug.WriteLine("App. LoginPage.Login.IsExecuting : {0}" + executing);
+                });
+
 
             MainPage = loginPage;
         }

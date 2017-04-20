@@ -45,6 +45,13 @@ namespace MC
                             return IsUsernameValid && IsPasswordValid;
                         });
             Login =
+                ReactiveCommand.Create(
+                    () =>
+                        {
+                            // Do nothing. Just a signal.
+                        },
+					canLogin);
+            /*
                 ReactiveCommand.CreateFromTask(
                     async(arg) =>
                         {
@@ -52,6 +59,7 @@ namespace MC
                             await Task.Delay(4000).ConfigureAwait(false);
                         },
 					canLogin);
+                    */
             Login.IsExecuting.ToProperty(this, x => x.IsLoading, out _isLoading);
         }
 	}
