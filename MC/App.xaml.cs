@@ -38,12 +38,14 @@ namespace MC
                 {
                     Debug.WriteLine("App. LoginPage.Login.IsExecuting : {0}", executing);
                 });
+			/*
 			this.WhenAnyValue(x => x.loginPage.Signal)
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Subscribe(signal =>
 			    {
 					Debug.WriteLine("App. LoginPage.Signal : {0}", signal);
 			    });
+			    */
 
             MainPage = loginPage;
         }

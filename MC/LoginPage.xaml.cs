@@ -8,21 +8,25 @@ using Xamarin.Forms;
 
 namespace MC
 {
+	/*
     public enum LoginPageSignal
     {
         None,
         Login,
         Logout
     };
+    */
 
-    public partial class LoginPage : ReactiveContentPage<LoginVM>, IViewFor<LoginVM>
+    public partial class LoginPage
     {
+		/*
         LoginPageSignal _signal;
         public LoginPageSignal Signal
         {
             get { return _signal; }
             set { this.RaiseAndSetIfChanged(ref _signal, value); }
         }
+        */
 
         public LoginPage(LoginVM loginVM)
         {
@@ -43,7 +47,7 @@ namespace MC
                     });
             Login.Events().Clicked.Subscribe(_ =>
             {
-                Signal = LoginPageSignal.Login;
+                //Signal = LoginPageSignal.Login;
                 Debug.WriteLine("LoginPage. Set signal");
             });
         }
