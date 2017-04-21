@@ -13,6 +13,8 @@ Currently this application:
 
 Preview
 -------
+Here is how the final application looks like on Android and iOS:
+
 | Android | iOS |
 | ------- | --- |
 | ![Android preview](img/android-preview.gif) | ![iOS preview](img/ios-preview.gif) |
