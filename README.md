@@ -14,5 +14,6 @@ Currently this application:
 Preview
 -------
 | Android | iOS |
+| ------- | --- |
 | ![Android preview](img/android-preview.gif) | ![iOS preview](img/ios-preview.gif) |
 
