@@ -2,7 +2,7 @@
 Overview
 --------
 
-Xamarin Reactive Example is a simple application that I use to research how well
+This is a simple application that I use to research how well
 Xamarin and ReactiveUI play for Android and iOS.
 
 Currently this application:
