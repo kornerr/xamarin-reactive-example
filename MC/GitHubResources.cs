@@ -20,6 +20,7 @@ namespace MC
         public GitHubResources(GitHubClient client)
         {
             Client = client;
+            _ghrModel = new GitHubResourcesModel();
             /*
             Login =
                 ReactiveCommand.CreateFromTask(
@@ -38,7 +39,7 @@ namespace MC
         public async void refresh()
         {
             Debug.WriteLine("GitHubResources. refresh");
-            _ghrModel = await Client.GetResourcesAsync();
+            GHRModel = await Client.GetResourcesAsync();
             Debug.WriteLine(
                 "GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
                 GHRModel.current_user_url,

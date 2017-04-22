@@ -56,7 +56,6 @@ namespace MC
                 GHR.refresh();
                 Debug.WriteLine("LoginPage. Click. 02");
             });
-			/*
             this.WhenAnyValue(x => x.GHR.GHRModel)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(ghrModel =>
@@ -66,31 +65,7 @@ namespace MC
                             ghrModel.current_user_url,
                             ghrModel.hub_url);
                     });
-                    */
         }
-
-        // Boilerplate code.
-        /*
-        public static readonly BindableProperty ViewModelProperty =
-            BindableProperty.Create(
-                nameof(ViewModel),
-                typeof(LoginVM),
-                typeof(LoginPage),
-                null,
-                BindingMode.OneWay);
-
-        public LoginVM ViewModel
-        {
-            get { return (LoginVM)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
-        }
-
-        object IViewFor.ViewModel
-        {
-            get { return ViewModel; }
-            set { ViewModel = (LoginVM)value; }
-        }
-        */
 
         protected GitHubResources GHR;
 

@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{941B4A93-97C4-4BCD-8A8C-3DF00CE09543}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MC/LoginPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Main.cs">
     <Files>
-      <File FileName="MC/LoginPage.xaml.cs" Line="59" Column="6" />
+      <File FileName="MC/LoginPage.xaml.cs" Line="55" Column="23" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
