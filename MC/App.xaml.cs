@@ -8,6 +8,9 @@ namespace MC
 {
     public partial class App : Application
     {
+        public GitHubClient client;
+        public GitHubResources ghr;
+
         public LoginVM loginVM;
         public LoginPage loginPage;
 
@@ -15,9 +18,13 @@ namespace MC
         {
             InitializeComponent();
 
-            loginVM = new LoginVM();
-            loginPage = new LoginPage(loginVM);
+            client = new GitHubClient();
+            ghr = new GitHubResources(client);
 
+            loginVM = new LoginVM();
+            loginPage = new LoginPage(loginVM, ghr);
+
+			/*
             loginPage
                 .WhenAnyValue(x => x.ViewModel.IsLoading)
                 .ObserveOn(RxApp.MainThreadScheduler)

@@ -45,8 +45,9 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginVM.cs" />
-    <Compile Include="Client.cs" />
     <Compile Include="GitHubResourcesModel.cs" />
+    <Compile Include="GitHubResources.cs" />
+    <Compile Include="GitHubClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">

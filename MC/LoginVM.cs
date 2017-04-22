@@ -8,7 +8,7 @@ namespace MC
 {
 	public class LoginVM : ReactiveObject
 	{
-        public ReactiveCommand Login { get; protected set; }
+        //public ReactiveCommand Login { get; protected set; }
 
         // Read-write property.
         string _username;
@@ -45,6 +45,7 @@ namespace MC
                             bool IsPasswordValid = !String.IsNullOrWhiteSpace(pa);
                             return IsUsernameValid && IsPasswordValid;
                         });
+            /*
             Login =
                 ReactiveCommand.CreateFromTask(
                     async(arg) =>
@@ -58,6 +59,7 @@ namespace MC
                         },
 					canLogin);
             Login.IsExecuting.ToProperty(this, x => x.IsLoading, out _isLoading);
+            */
         }
 	}
 }

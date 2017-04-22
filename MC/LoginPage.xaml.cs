@@ -28,13 +28,17 @@ namespace MC
         }
         */
 
-        public LoginPage(LoginVM loginVM)
+        public LoginPage(LoginVM loginVM, GitHubResources ghr)
         {
             InitializeComponent();
+
+            GHR = ghr;
+            //this.BindCommand(ghr, vm => vm.Login, v => v.Login);
 
             ViewModel = loginVM;
             this.Bind(ViewModel, vm => vm.Username, v => v.Username.Text);
             this.Bind(ViewModel, vm => vm.Password, v => v.Password.Text);
+            /*
             this.BindCommand(ViewModel, vm => vm.Login, v => v.Login);
             this.WhenAnyValue(x => x.ViewModel.IsLoading)
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -45,11 +49,24 @@ namespace MC
                         Processing.IsVisible = busy;
                         Main.IsVisible = !busy;
                     });
+            */       
             Login.Events().Clicked.Subscribe(_ =>
             {
-                //Signal = LoginPageSignal.Login;
-                Debug.WriteLine("LoginPage. Set signal");
+                Debug.WriteLine("LoginPage. Click. 01");
+                GHR.refresh();
+                Debug.WriteLine("LoginPage. Click. 02");
             });
+			/*
+            this.WhenAnyValue(x => x.GHR.GHRModel)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(ghrModel =>
+                    {
+                        Debug.WriteLine(
+                            "WHEN_ANY.GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
+                            ghrModel.current_user_url,
+                            ghrModel.hub_url);
+                    });
+                    */
         }
 
         // Boilerplate code.
@@ -74,6 +91,11 @@ namespace MC
             set { ViewModel = (LoginVM)value; }
         }
         */
+
+        protected GitHubResources GHR;
+
     }
+
+
 }
 
