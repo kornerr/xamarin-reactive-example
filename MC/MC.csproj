@@ -45,6 +45,7 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginVM.cs" />
+    <Compile Include="Client.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">
@@ -79,6 +80,21 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="FubarCoder.RestSharp.Portable.Core">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.Core.4.0.8\lib\portable45-net45+win8+wp8+wpa81\FubarCoder.RestSharp.Portable.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubarCoder.RestSharp.Portable.HttpClient">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.HttpClient.4.0.8\lib\portable45-net45+win8+wp8+wpa81\FubarCoder.RestSharp.Portable.HttpClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
