@@ -51,12 +51,10 @@ namespace MC
                         {
                             var client = new GitHubClient();
                             var gitHubResources = await client.GetResourcesAsync();
-                            // Faked loading.
                             Debug.WriteLine(
                                 "GitHubResources: '{0}', '{1}'",
                                 gitHubResources.current_user_url,
                                 gitHubResources.hub_url);
-                            //await Task.Delay(4000).ConfigureAwait(false);
                         },
 					canLogin);
             Login.IsExecuting.ToProperty(this, x => x.IsLoading, out _isLoading);

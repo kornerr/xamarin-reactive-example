@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="LoginVM.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="GitHubResourcesModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">
