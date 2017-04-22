@@ -8,8 +8,15 @@ namespace MC
 {
     public class GitHubResources : ReactiveObject
     {
-        //public ReactiveCommand Login { get; protected set; }
+        // RefreshStatus.
+        ModelRequestStatus _refreshStatus;
+        public ModelRequestStatus RefreshStatus
+        {
+            get { return _refreshStatus; }
+            protected set { this.RaiseAndSetIfChanged(ref _refreshStatus, value); }
+        }
 
+        // GHRModel.
         GitHubResourcesModel _ghrModel;
         public GitHubResourcesModel GHRModel
         {
@@ -21,25 +28,15 @@ namespace MC
         {
             Client = client;
             _ghrModel = new GitHubResourcesModel();
-            /*
-            Login =
-                ReactiveCommand.CreateFromTask(
-                    async(arg) =>
-                        {
-                            Debug.WriteLine("GitHubResources. Make request");
-                            _ghrModel = await Client.GetResourcesAsync();
-                            Debug.WriteLine(
-                                "GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
-                                GHRModel.current_user_url,
-                                GHRModel.hub_url);
-                        });
-                        */
+            _refreshStatus = ModelRequestStatus.None;
         }
 
         public async void refresh()
         {
             Debug.WriteLine("GitHubResources. refresh");
+            RefreshStatus = ModelRequestStatus.Process;
             GHRModel = await Client.GetResourcesAsync();
+            RefreshStatus = ModelRequestStatus.Success;
             Debug.WriteLine(
                 "GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
                 GHRModel.current_user_url,

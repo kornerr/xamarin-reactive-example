@@ -48,6 +48,7 @@
     <Compile Include="GitHubResourcesModel.cs" />
     <Compile Include="GitHubResources.cs" />
     <Compile Include="GitHubClient.cs" />
+    <Compile Include="ModelRequestStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">

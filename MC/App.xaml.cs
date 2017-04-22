@@ -22,37 +22,37 @@ namespace MC
             ghr = new GitHubResources(client);
 
             loginVM = new LoginVM();
-            loginPage = new LoginPage(loginVM, ghr);
+            loginPage = new LoginPage(loginVM);
 
-			/*
-            loginPage
-                .WhenAnyValue(x => x.ViewModel.IsLoading)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Subscribe(busy =>
-                {
-                    Debug.WriteLine("App. LoginPage. WhenAnyValue" + busy);
-                });
+            // Peform request.
+			this.WhenAnyValue(x => x.loginVM.IsLogging)
+			    .Where(x => x == true)
+			    .ObserveOn(RxApp.MainThreadScheduler)
+			    .Subscribe(executing =>
+                    {
+					    Debug.WriteLine("App. Refresh");
+                        ghr.refresh();
+                    });
 
-            this.WhenAnyValue(x => x.loginVM.IsLoading)
+            // Print result of the request.
+            this.WhenAnyValue(x => x.ghr.GHRModel)
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .Subscribe(busy =>
-                {
-                    Debug.WriteLine("App. LoginVM.IsLoading : {0}", busy);
-                });
-            this.WhenAnyValue(x => x.loginVM.Login.IsExecuting)
+                .Subscribe(ghrModel =>
+                    {
+                        Debug.WriteLine(
+                            "WHEN_ANY.GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
+                            ghrModel.current_user_url,
+                            ghrModel.hub_url);
+                    });
+
+            // Display spinner while request is in progress.
+            this.WhenAnyValue(x => x.ghr.RefreshStatus)
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .Subscribe(executing =>
-                {
-                    Debug.WriteLine("App. LoginPage.Login.IsExecuting : {0}", executing);
-                });
-			/*
-			this.WhenAnyValue(x => x.loginPage.Signal)
-				.ObserveOn(RxApp.MainThreadScheduler)
-				.Subscribe(signal =>
-			    {
-					Debug.WriteLine("App. LoginPage.Signal : {0}", signal);
-			    });
-			    */
+                .Subscribe(status =>
+                    {
+                        Debug.WriteLine("GHR.RefreshStatus: '{0}'", status);
+                        loginVM.IsLoading = (status == ModelRequestStatus.Process);
+                    });
 
             MainPage = loginPage;
         }

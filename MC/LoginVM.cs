@@ -6,11 +6,25 @@ using Xamarin.Forms;
 
 namespace MC
 {
-	public class LoginVM : ReactiveObject
-	{
-        //public ReactiveCommand Login { get; protected set; }
+    public class LoginVM : ReactiveObject
+    {
+        // Login, IsLogging.
+        public ReactiveCommand Login { get; protected set; }
+        readonly ObservableAsPropertyHelper<bool> _isLogging;
+        public bool IsLogging
+        {
+            get { return _isLogging.Value; }
+        }
 
-        // Read-write property.
+        // IsLoading.
+        bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { this.RaiseAndSetIfChanged(ref _isLoading, value); }
+        }
+
+        // Username.
         string _username;
         public string Username
         {
@@ -18,19 +32,12 @@ namespace MC
             set { this.RaiseAndSetIfChanged(ref _username, value); }
         }
 
-        // Read-write property.
+        // Password.
         string _password;
         public string Password
         {
             get { return _password; }
             set { this.RaiseAndSetIfChanged(ref _password, value); }
-        }
-
-        // Read only property.
-        readonly ObservableAsPropertyHelper<bool> _isLoading;
-        public bool IsLoading
-        {
-            get { return _isLoading.Value; }
         }
 
         public LoginVM()
@@ -45,22 +52,9 @@ namespace MC
                             bool IsPasswordValid = !String.IsNullOrWhiteSpace(pa);
                             return IsUsernameValid && IsPasswordValid;
                         });
-            /*
-            Login =
-                ReactiveCommand.CreateFromTask(
-                    async(arg) =>
-                        {
-                            var client = new GitHubClient();
-                            var gitHubResources = await client.GetResourcesAsync();
-                            Debug.WriteLine(
-                                "GitHubResources: '{0}', '{1}'",
-                                gitHubResources.current_user_url,
-                                gitHubResources.hub_url);
-                        },
-					canLogin);
-            Login.IsExecuting.ToProperty(this, x => x.IsLoading, out _isLoading);
-            */
+            Login = ReactiveCommand.Create(() => { }, canLogin);
+            Login.IsExecuting.ToProperty(this, x => x.IsLogging, out _isLogging);
         }
-	}
+    }
 }
 
