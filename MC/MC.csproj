@@ -53,6 +53,7 @@
     <Compile Include="AuthModel.cs" />
     <Compile Include="MGRClient.cs" />
     <Compile Include="MGR.cs" />
+    <Compile Include="BaseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">

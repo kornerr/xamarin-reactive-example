@@ -22,8 +22,8 @@ namespace MC
                     login = username,
                     password = password
                 });
-            var result = await _client.Execute<AuthModel>(request);
-            return result.Data;
+            var result = await _client.Execute<BaseModel<AuthModel>>(request);
+            return result.Data.data;
         }
 
         protected IRestClient _client;
