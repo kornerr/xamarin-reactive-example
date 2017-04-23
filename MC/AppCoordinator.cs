@@ -14,23 +14,19 @@ namespace MC
 
         public AppCoordinator()
         {
-            _client = new GitHubClient();
-            _ghr = new GitHubResources(_client);
-
             _loginVM = new LoginVM();
             _loginPage = new LoginPage(_loginVM);
 
             MainPage = _loginPage;
 
-            // Peform request.
-			this.WhenAnyValue(x => x._loginVM.IsLogging)
-			    .Where(x => x == true)
-			    .ObserveOn(RxApp.MainThreadScheduler)
-			    .Subscribe(executing =>
-                    {
-					    Debug.WriteLine("AppCoordinator. Refresh");
-                        _ghr.refresh();
-                    });
+            setupGitHubResources();
+            setupGitHubLoading();
+        }
+
+        public void setupGitHubResources()
+        {
+            _client = new GitHubClient();
+            _ghr = new GitHubResources(_client);
 
             // Print result of the request.
             this.WhenAnyValue(x => x._ghr.GHRModel)
@@ -41,6 +37,19 @@ namespace MC
                             "AppCoordinator. GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
                             ghrModel.current_user_url,
                             ghrModel.hub_url);
+                    });
+        }
+
+        void setupGitHubLoading()
+        {
+            // Peform request.
+            this.WhenAnyValue(x => x._loginVM.IsLogging)
+			    .Where(x => x == true)
+			    .ObserveOn(RxApp.MainThreadScheduler)
+			    .Subscribe(executing =>
+                    {
+					    Debug.WriteLine("AppCoordinator. Refresh");
+                        _ghr.refresh();
                     });
 
             // Display spinner while request is in progress.
