@@ -50,6 +50,9 @@
     <Compile Include="GitHubClient.cs" />
     <Compile Include="ModelRequestStatus.cs" />
     <Compile Include="AppCoordinator.cs" />
+    <Compile Include="AuthModel.cs" />
+    <Compile Include="MGRClient.cs" />
+    <Compile Include="MGR.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">

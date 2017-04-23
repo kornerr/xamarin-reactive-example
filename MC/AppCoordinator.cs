@@ -19,8 +19,11 @@ namespace MC
 
             MainPage = _loginPage;
 
-            setupGitHubResources();
-            setupGitHubLoading();
+            //setupGitHubResources();
+            //setupGitHubLoading();
+
+            setupMGR();
+            setupMGRLoading();
         }
 
         public void setupGitHubResources()
@@ -62,8 +65,51 @@ namespace MC
                     });
         }
 
+        public void setupMGR()
+        {
+            _mgrClient = new MGRClient();
+            _mgr = new MGR(_mgrClient);
+
+            // Print result of the request.
+            this.WhenAnyValue(x => x._mgr.Auth)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(auth =>
+                    {
+                        Debug.WriteLine(
+                            "AppCoordinator. Authorize(access token: '{0}' refresh token: '{1}')",
+                            auth.accessToken,
+                            auth.refreshToken);
+                    });
+        }
+
+        void setupMGRLoading()
+        {
+            // Peform request.
+            this.WhenAnyValue(x => x._loginVM.IsLogging)
+			    .Where(x => x == true)
+			    .ObserveOn(RxApp.MainThreadScheduler)
+			    .Subscribe(executing =>
+                    {
+					    Debug.WriteLine("AppCoordinator. Authorize");
+                        _mgr.authorize(_loginVM.Username, _loginVM.Password);
+                    });
+
+            // Display spinner while request is in progress.
+            this.WhenAnyValue(x => x._mgr.AuthStatus)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(status =>
+                    {
+                        Debug.WriteLine("AppCoordinator. MGR.AuthStatus: '{0}'", status);
+                        _loginVM.IsLoading = (status == ModelRequestStatus.Process);
+                    });
+        }
+
         private GitHubClient _client;
         private GitHubResources _ghr;
+
+        private MGRClient _mgrClient;
+        private MGR _mgr;
+
         private LoginVM _loginVM;
         private LoginPage _loginPage;
     }
