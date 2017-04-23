@@ -10,6 +10,7 @@ namespace MC
 
     public class AppCoordinator : ReactiveObject
     {
+        // MainPage.
         public ContentPage _mainPage;
         public ContentPage MainPage
         {
@@ -23,6 +24,7 @@ namespace MC
             _loginPage = new LoginPage(_loginVM);
 
             _successPage = new SuccessPage();
+            _failurePage = new FailurePage();
 
             MainPage = _loginPage;
 
@@ -130,7 +132,7 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to FailurePage");
-                        //MainPage = _failurePage;
+                        MainPage = _failurePage;
                     });
         }
 
@@ -145,6 +147,8 @@ namespace MC
 
         private SuccessVM _successVM;
         private SuccessPage _successPage;
+
+        private FailurePage _failurePage;
     }
 }
 
