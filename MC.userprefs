@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{941B4A93-97C4-4BCD-8A8C-3DF00CE09543}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MC/MGRClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MC/AuthModel.cs">
     <Files>
-      <File FileName="MC/MGRClient.cs" Line="27" Column="10" />
+      <File FileName="MC/MGRClient.cs" Line="12" Column="27" />
+      <File FileName="MC/AuthModel.cs" Line="14" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

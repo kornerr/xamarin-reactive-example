@@ -40,11 +40,11 @@ namespace MC
             {
                 Auth = await _client.GetAuthAsync(username, password);
                 AuthStatus = ModelRequestStatus.Success;
-                Debug.WriteLine("MGR. authorize OK: 'TODO'");
+                Debug.WriteLine("MGR. authorize OK: '{0}'", Auth.toJSON());
             }
             catch (Exception e)
             {
-                Debug.WriteLine("MGR. authorize ERROR: 'TODO'");
+                Debug.WriteLine("MGR. authorize ERROR: '{0}'", e.Message);
                 AuthStatus = ModelRequestStatus.Failure;
             }
         }
