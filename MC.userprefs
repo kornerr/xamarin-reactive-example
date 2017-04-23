@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{941B4A93-97C4-4BCD-8A8C-3DF00CE09543}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MC/GitHubResources.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Main.cs">
     <Files>
       <File FileName="MC/App.xaml.cs" Line="1" Column="1" />
-      <File FileName="MC/LoginVM.cs" Line="21" Column="30" />
-      <File FileName="MC/GitHubResources.cs" Line="13" Column="35" />
+      <File FileName="MC/LoginVM.cs" Line="56" Column="82" />
+      <File FileName="MC/GitHubResources.cs" Line="1" Column="1" />
+      <File FileName="MC/LoginPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MC/AppCoordinator.cs" Line="5" Column="28" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
