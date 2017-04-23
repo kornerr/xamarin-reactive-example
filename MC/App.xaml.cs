@@ -15,7 +15,6 @@ namespace MC
             _coordinator = new AppCoordinator();
 
             MainPage = _coordinator.MainPage;
-
             // Monitor main page change.
 			this.WhenAnyValue(x => x._coordinator.MainPage)
 			    .ObserveOn(RxApp.MainThreadScheduler)

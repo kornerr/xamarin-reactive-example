@@ -28,17 +28,16 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="LoadingPage.xaml" />
     <EmbeddedResource Include="LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuccessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LoadingPage.xaml.cs">
-      <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginPage.xaml.cs">
@@ -54,6 +53,8 @@
     <Compile Include="MGRClient.cs" />
     <Compile Include="MGR.cs" />
     <Compile Include="BaseModel.cs" />
+    <Compile Include="SuccessPage.xaml.cs" />
+    <Compile Include="SuccessVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">

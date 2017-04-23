@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reactive:ReactiveContentPage
+    xmlns:local="clr-namespace:MC"
+    x:TypeArguments="local:SuccessVM"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MC.SuccessPage"
+    xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
+    <reactive:ReactiveContentPage.Content>
+        <StackLayout
+            Spacing="20"
+            Padding="20"
+            VerticalOptions="Center"
+            >
+            <Label Text="Success..."/>
+        </StackLayout>
+    </reactive:ReactiveContentPage.Content>
+</reactive:ReactiveContentPage>

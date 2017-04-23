@@ -10,12 +10,19 @@ namespace MC
 
     public class AppCoordinator : ReactiveObject
     {
-        public ContentPage MainPage;
+        public ContentPage _mainPage;
+        public ContentPage MainPage
+        {
+            get { return _mainPage; }
+            protected set { this.RaiseAndSetIfChanged(ref _mainPage, value); }
+        }
 
         public AppCoordinator()
         {
             _loginVM = new LoginVM();
             _loginPage = new LoginPage(_loginVM);
+
+            _successPage = new SuccessPage();
 
             MainPage = _loginPage;
 
@@ -23,7 +30,8 @@ namespace MC
             //setupGitHubLoading();
 
             setupMGR();
-            setupMGRLoading();
+            setupMGRAuth();
+            setupMGRAuthTransitions();
         }
 
         public void setupGitHubResources()
@@ -82,7 +90,7 @@ namespace MC
                     });
         }
 
-        void setupMGRLoading()
+        void setupMGRAuth()
         {
             // Peform request.
             this.WhenAnyValue(x => x._loginVM.IsLogging)
@@ -103,6 +111,28 @@ namespace MC
                         _loginVM.IsLoading = (status == ModelRequestStatus.Process);
                     });
         }
+        void setupMGRAuthTransitions()
+        {
+            // Go to 'Success' upon successful authorization.
+            this.WhenAnyValue(x => x._mgr.AuthStatus)
+                .Where(x => x == ModelRequestStatus.Success)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(status =>
+                    {
+                        Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
+                        MainPage = _successPage;
+                    });
+
+            // Go to 'Failure' upon failed authorization.
+            this.WhenAnyValue(x => x._mgr.AuthStatus)
+                .Where(x => x == ModelRequestStatus.Failure)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(status =>
+                    {
+                        Debug.WriteLine("AppCoordinator. set main page to FailurePage");
+                        //MainPage = _failurePage;
+                    });
+        }
 
         private GitHubClient _client;
         private GitHubResources _ghr;
@@ -112,6 +142,9 @@ namespace MC
 
         private LoginVM _loginVM;
         private LoginPage _loginPage;
+
+        private SuccessVM _successVM;
+        private SuccessPage _successPage;
     }
 }
 

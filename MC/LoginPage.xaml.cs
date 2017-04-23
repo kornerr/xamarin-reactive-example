@@ -8,7 +8,6 @@ using Xamarin.Forms;
 
 namespace MC
 {
-
     public partial class LoginPage
     {
         public LoginPage(LoginVM loginVM)
