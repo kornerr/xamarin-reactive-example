@@ -36,12 +36,17 @@ namespace MC
         {
             Debug.WriteLine("MGR. authorize");
             AuthStatus = ModelRequestStatus.Process;
-            Auth = await _client.GetAuthAsync(username, password);
-            AuthStatus = ModelRequestStatus.Success;
-            Debug.WriteLine(
-                "MGR. Authorize(access token: '{0}' refresh token: '{1}')",
-                Auth.accessToken,
-                Auth.refreshToken);
+            try
+            {
+                Auth = await _client.GetAuthAsync(username, password);
+                AuthStatus = ModelRequestStatus.Success;
+                Debug.WriteLine("MGR. authorize OK: 'TODO'");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("MGR. authorize ERROR: 'TODO'");
+                AuthStatus = ModelRequestStatus.Failure;
+            }
         }
 
         private MGRClient _client;
