@@ -37,6 +37,9 @@
     <EmbeddedResource Include="FailurePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="SecondPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -57,6 +60,9 @@
     <Compile Include="SuccessVM.cs" />
     <Compile Include="FailurePage.xaml.cs">
       <DependentUpon>FailurePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondPage.xaml.cs">
+      <DependentUpon>SecondPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

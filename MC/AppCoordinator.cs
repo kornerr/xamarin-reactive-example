@@ -26,6 +26,9 @@ namespace MC
             _successPage = new SuccessPage();
             _failurePage = new FailurePage();
 
+            _secondPage = new SecondPage();
+
+			//_rootPage = _secondPage;
 			_rootPage = _loginPage;
 
             setupMGR();
@@ -80,7 +83,8 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
-                        RootPage = _successPage;
+                        //RootPage = _successPage;
+                        RootPage = _secondPage;
                     });
 
             // Go to 'Failure' upon failed authorization.
@@ -90,7 +94,8 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to FailurePage");
-                        RootPage = _failurePage;
+                        //RootPage = _failurePage;
+                        RootPage = _secondPage;
                     });
         }
 
@@ -98,12 +103,13 @@ namespace MC
         private MGR _mgr;
 
         private LoginVM _loginVM;
-        public LoginPage _loginPage;
+        private LoginPage _loginPage;
 
         //private SuccessVM _successVM;
         private SuccessPage _successPage;
-
         private FailurePage _failurePage;
+
+        private SecondPage _secondPage;
     }
 }
 

@@ -1,11 +1,8 @@
 ﻿<Properties StartupConfiguration="{FD1049D1-F39A-465F-83C3-46415492877E}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MC/MGR.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/MainActivity.cs">
     <Files>
-      <File FileName="MC/MGRClient.cs" Line="12" Column="27" />
-      <File FileName="MC/AuthModel.cs" Line="14" Column="20" />
-      <File FileName="Droid/MainActivity.cs" Line="24" Column="4" />
-      <File FileName="MC/AppCoordinator.cs" Line="18" Column="1" />
-      <File FileName="MC/MGR.cs" Line="17" Column="1" />
+      <File FileName="MC/AppCoordinator.cs" Line="29" Column="35" />
+      <File FileName="Droid/MainActivity.cs" Line="25" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
