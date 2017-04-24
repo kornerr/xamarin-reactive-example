@@ -28,51 +28,9 @@ namespace MC
 
 			_rootPage = _loginPage;
 
-            //setupGitHubResources();
-            //setupGitHubLoading();
-
             setupMGR();
             setupMGRAuth();
             setupMGRAuthTransitions();
-        }
-
-        public void setupGitHubResources()
-        {
-            _client = new GitHubClient();
-            _ghr = new GitHubResources(_client);
-
-            // Print result of the request.
-            this.WhenAnyValue(x => x._ghr.GHRModel)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Subscribe(ghrModel =>
-                    {
-                        Debug.WriteLine(
-                            "AppCoordinator. GitHubResources(current_user_url: '{0}' hub_url: '{1}')",
-                            ghrModel.current_user_url,
-                            ghrModel.hub_url);
-                    });
-        }
-
-        void setupGitHubLoading()
-        {
-            // Peform request.
-            this.WhenAnyValue(x => x._loginVM.IsLogging)
-			    .Where(x => x == true)
-			    .ObserveOn(RxApp.MainThreadScheduler)
-			    .Subscribe(executing =>
-                    {
-					    Debug.WriteLine("AppCoordinator. Refresh");
-                        _ghr.refresh();
-                    });
-
-            // Display spinner while request is in progress.
-            this.WhenAnyValue(x => x._ghr.RefreshStatus)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Subscribe(status =>
-                    {
-                        Debug.WriteLine("AppCoordinator. GHR.RefreshStatus: '{0}'", status);
-                        _loginVM.IsLoading = (status == ModelRequestStatus.Process);
-                    });
         }
 
         public void setupMGR()
@@ -123,7 +81,6 @@ namespace MC
                     {
                         Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
                         RootPage = _successPage;
-				        Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
                     });
 
             // Go to 'Failure' upon failed authorization.
@@ -136,9 +93,6 @@ namespace MC
                         RootPage = _failurePage;
                     });
         }
-
-        private GitHubClient _client;
-        private GitHubResources _ghr;
 
         private MGRClient _mgrClient;
         private MGR _mgr;

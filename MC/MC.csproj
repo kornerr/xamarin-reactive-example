@@ -47,9 +47,6 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginVM.cs" />
-    <Compile Include="GitHubResourcesModel.cs" />
-    <Compile Include="GitHubResources.cs" />
-    <Compile Include="GitHubClient.cs" />
     <Compile Include="ModelRequestStatus.cs" />
     <Compile Include="AppCoordinator.cs" />
     <Compile Include="AuthModel.cs" />
