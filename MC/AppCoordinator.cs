@@ -26,10 +26,7 @@ namespace MC
             _successPage = new SuccessPage();
             _failurePage = new FailurePage();
 
-            _secondPage = new SecondPage();
-
-			//_rootPage = _secondPage;
-			_rootPage = _loginPage;
+            _rootPage = _loginPage;
 
             setupMGR();
             setupMGRAuth();
@@ -57,11 +54,11 @@ namespace MC
         {
             // Peform request.
             this.WhenAnyValue(x => x._loginVM.IsLogging)
-			    .Where(x => x == true)
-			    .ObserveOn(RxApp.MainThreadScheduler)
-			    .Subscribe(executing =>
+                .Where(x => x == true)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(executing =>
                     {
-					    Debug.WriteLine("AppCoordinator. Authorize");
+                        Debug.WriteLine("AppCoordinator. Authorize");
                         _mgr.authorize(_loginVM.Username, _loginVM.Password);
                     });
 
@@ -83,8 +80,7 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
-                        //RootPage = _successPage;
-                        RootPage = _secondPage;
+                        RootPage = _successPage;
                     });
 
             // Go to 'Failure' upon failed authorization.
@@ -94,8 +90,7 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to FailurePage");
-                        //RootPage = _failurePage;
-                        RootPage = _secondPage;
+                        RootPage = _failurePage;
                     });
         }
 
@@ -108,8 +103,6 @@ namespace MC
         //private SuccessVM _successVM;
         private SuccessPage _successPage;
         private FailurePage _failurePage;
-
-        private SecondPage _secondPage;
     }
 }
 
