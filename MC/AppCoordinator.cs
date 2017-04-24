@@ -11,11 +11,11 @@ namespace MC
     public class AppCoordinator : ReactiveObject
     {
         // MainPage.
-        public ContentPage _mainPage;
-        public ContentPage MainPage
+        public ContentPage _rootPage;
+        public ContentPage RootPage
         {
-            get { return _mainPage; }
-            protected set { this.RaiseAndSetIfChanged(ref _mainPage, value); }
+            get { return _rootPage; }
+            protected set { this.RaiseAndSetIfChanged(ref _rootPage, value); }
         }
 
         public AppCoordinator()
@@ -26,7 +26,7 @@ namespace MC
             _successPage = new SuccessPage();
             _failurePage = new FailurePage();
 
-            MainPage = _loginPage;
+			_rootPage = _loginPage;
 
             //setupGitHubResources();
             //setupGitHubLoading();
@@ -122,7 +122,8 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
-                        MainPage = _successPage;
+                        RootPage = _successPage;
+				        Debug.WriteLine("AppCoordinator. set main page to SuccessPage");
                     });
 
             // Go to 'Failure' upon failed authorization.
@@ -132,7 +133,7 @@ namespace MC
                 .Subscribe(status =>
                     {
                         Debug.WriteLine("AppCoordinator. set main page to FailurePage");
-                        MainPage = _failurePage;
+                        RootPage = _failurePage;
                     });
         }
 
@@ -143,9 +144,9 @@ namespace MC
         private MGR _mgr;
 
         private LoginVM _loginVM;
-        private LoginPage _loginPage;
+        public LoginPage _loginPage;
 
-        private SuccessVM _successVM;
+        //private SuccessVM _successVM;
         private SuccessPage _successPage;
 
         private FailurePage _failurePage;

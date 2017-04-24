@@ -14,14 +14,14 @@ namespace MC
 
             _coordinator = new AppCoordinator();
 
-            MainPage = _coordinator.MainPage;
+            MainPage = _coordinator.RootPage;
             // Monitor main page change.
-			this.WhenAnyValue(x => x._coordinator.MainPage)
+			this.WhenAnyValue(x => x._coordinator.RootPage)
 			    .ObserveOn(RxApp.MainThreadScheduler)
-			    .Subscribe(executing =>
+			    .Subscribe(page =>
                     {
-					    Debug.WriteLine("App. Assign MainPage: '{0}'", _coordinator.MainPage);
-                        MainPage = _coordinator.MainPage;
+					    Debug.WriteLine("App. Assign MainPage: '{0}'", page);
+						MainPage = page;
                     });
         }
 
