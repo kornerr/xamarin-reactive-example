@@ -1,15 +1,17 @@
-﻿<Properties StartupConfiguration="{941B4A93-97C4-4BCD-8A8C-3DF00CE09543}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MC/AuthModel.cs">
+﻿<Properties StartupConfiguration="{FD1049D1-F39A-465F-83C3-46415492877E}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/MainActivity.cs">
     <Files>
       <File FileName="MC/MGRClient.cs" Line="12" Column="27" />
       <File FileName="MC/AuthModel.cs" Line="14" Column="20" />
+      <File FileName="Droid/MainActivity.cs" Line="24" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MC.Droid PreferredExecutionTarget="Android.Android_Accelerated_x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.MC.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.06DCA37C-BAF4-4AD9-BA72-D58F305B6FC8" />
+  <MonoDevelop.Ide.ItemProperties.MC.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.4180AFD9-2D0B-4EFF-A9BD-A379E93277EE" />
   <MultiItemStartupConfigurations />
 </Properties>
