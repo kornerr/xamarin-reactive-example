@@ -5,10 +5,16 @@
     x:Class="MC.AnimatedButton">
 	<ContentView.Content>
         <StackLayout
-            Padding="5"
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
-            <Label Text="Animated button"/>
+            VerticalOptions="FillAndExpand"
+            Padding="10"
+            BackgroundColor="Red">
+            <Label
+                Text="Animated button"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
+                />
         </StackLayout>
 	</ContentView.Content>
 </ContentView>
