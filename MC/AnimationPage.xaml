@@ -7,7 +7,7 @@
 	<ContentPage.Content>
         <RelativeLayout>
             <BoxView
-                x:Name="Blue"
+                x:Name="Source"
                 Color="#aaaacc"
                 RelativeLayout.XConstraint=
                     "{ConstraintExpression
@@ -35,7 +35,7 @@
                         Constant=0}"/>
             <BoxView
                 x:Name="Target"
-                Color="#aaccaa"
+                Color="#55aaccaa"
                 RelativeLayout.XConstraint=
                     "{ConstraintExpression
                         Type=Constant,
