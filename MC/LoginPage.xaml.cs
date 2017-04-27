@@ -26,7 +26,7 @@ namespace MC
                         Username.IsEnabled = !busy;
                         Password.IsEnabled = !busy;
                         Processing.IsVisible = busy;
-                        Main.IsVisible = !busy;
+                        LoginView.IsVisible = !busy;
                     });
 
             // Observe animated button press.
@@ -36,7 +36,13 @@ namespace MC
 					ev => AnimatedButton.ButtonClicked += ev,
 					ev => AnimatedButton.ButtonClicked -= ev);
 			obs.Subscribe(_ => Debug.WriteLine("LoginPage. AnimatedButton clicked"));
-			
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            // Show LoginView upon appearing.
+			LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
         }
     }
 }

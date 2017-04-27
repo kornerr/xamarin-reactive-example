@@ -7,44 +7,123 @@
     x:TypeArguments="local:LoginVM"
     xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
     <reactive:ReactiveContentPage.Content>
-        <StackLayout
-            VerticalOptions="Center"
-            >
+        <RelativeLayout>
+            <!-- Background image -->
+            <Image
+                Source="splashscreen.png"
+                RelativeLayout.XConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}"
+                RelativeLayout.YConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}" 
+                RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Width,
+                        Factor=1,
+                        Constant=0}"
+                RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=1,
+                        Constant=0}"/>
+            <!-- Target login view position -->
+            <BoxView
+                x:Name="Target"
+                RelativeLayout.XConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}"
+                RelativeLayout.YConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=0.3,
+                        Constant=0}" 
+                RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Width,
+                        Factor=1,
+                        Constant=0}"
+                RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=0.7,
+                        Constant=0}"/>
+            <!-- TODO: Extract LoginView to a separate ContentView -->
             <StackLayout
-                x:Name="Main"
+                x:Name="LoginView"
                 Spacing="20"
                 Padding="20"
-                VerticalOptions="Center"
-                >
+                BackgroundColor="#f15252"
+                RelativeLayout.XConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}"
+                RelativeLayout.YConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=1,
+                        Constant=0}" 
+                RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Width,
+                        Factor=1,
+                        Constant=0}"
+                RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=0.4,
+                        Constant=0}">
                 <Entry
                     x:Name="Username"
-                    Placeholder="Username"
-                    />
+                    Placeholder="Username"/>
                 <Entry
                     x:Name="Password"
                     Placeholder="Password"
-                    IsPassword="true"
-                    />
+                    IsPassword="true"/>
                 <Button
                     x:Name="Login"
                     Text="Login"
                     TextColor="White"
-                    BackgroundColor="#3060DD"
-                    />
+                    BackgroundColor="#3060DD"/>
                 <local:AnimatedButton
-                    x:Name="AnimatedButton"
-                    />
+                    x:Name="AnimatedButton"/>
             </StackLayout>
-            <StackLayout
+            <ActivityIndicator
                 x:Name="Processing"
-                VerticalOptions="Center"
-                >
-                <ActivityIndicator
-                    IsVisible="true"
-                    IsRunning="true"
-                    Color="Black"
-                    />
-            </StackLayout>
-        </StackLayout>
+                IsVisible="true"
+                IsRunning="true"
+                Color="Black"
+                RelativeLayout.XConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}"
+                RelativeLayout.YConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}" 
+                RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Width,
+                        Factor=1,
+                        Constant=0}"
+                RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=1,
+                        Constant=0}"/>
+        </RelativeLayout>
     </reactive:ReactiveContentPage.Content>
 </reactive:ReactiveContentPage>

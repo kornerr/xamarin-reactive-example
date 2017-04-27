@@ -26,11 +26,7 @@ namespace MC
             _successPage = new SuccessPage();
             _failurePage = new FailurePage();
 
-            //_rootPage = _loginPage;
-
-            //_animationPage = new AnimationPage();
-            _animatedLoginPage = new AnimatedLoginPage();
-            _rootPage = _animatedLoginPage;
+            _rootPage = _loginPage;
 
             setupMGR();
             setupMGRAuth();
@@ -106,9 +102,6 @@ namespace MC
 
         private SuccessPage _successPage;
         private FailurePage _failurePage;
-
-        private AnimationPage _animationPage;
-        private AnimatedLoginPage _animatedLoginPage;
     }
 }
 
