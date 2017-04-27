@@ -25,7 +25,9 @@
                     TextColor="White"
                     BackgroundColor="#3060DD"
                     />
-                <local:AnimatedButton />
+                <local:AnimatedButton
+                    x:Name="AnimatedButton"
+                    />
             </StackLayout>
             <StackLayout
                 x:Name="Processing"
