@@ -1,4 +1,3 @@
-
 using ReactiveUI;
 using System;
 using System.Diagnostics;
