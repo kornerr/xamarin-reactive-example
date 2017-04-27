@@ -25,6 +25,7 @@
                     TextColor="White"
                     BackgroundColor="#3060DD"
                     />
+                <local:MC.AnimatedButton />
             </StackLayout>
             <StackLayout
                 x:Name="Processing"
