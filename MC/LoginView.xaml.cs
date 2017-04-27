@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace MC
 {
-	public partial class SlideView : ContentView
+	public partial class LoginView : ContentView
 	{
-		public SlideView()
+		public LoginView()
 		{
 			InitializeComponent();
 		}

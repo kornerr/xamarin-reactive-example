@@ -43,7 +43,7 @@
     <EmbeddedResource Include="AnimatedButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="SlideView.xaml">
+    <EmbeddedResource Include="LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="AnimationPage.xaml">
@@ -80,8 +80,8 @@
     <Compile Include="AnimatedButton.xaml.cs">
       <DependentUpon>AnimatedButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SlideView.xaml.cs">
-      <DependentUpon>SlideView.xaml</DependentUpon>
+    <Compile Include="LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AnimationPage.xaml.cs">
       <DependentUpon>AnimationPage.xaml</DependentUpon>

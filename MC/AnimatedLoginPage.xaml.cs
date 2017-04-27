@@ -11,18 +11,13 @@ namespace MC
 		public AnimatedLoginPage()
 		{
 			InitializeComponent();
-
-            // Observe animated button press.
-            Debug.WriteLine("AnimatedLoginPage. AnimatedButton: '{0}'", AnimatedButton);
-			var obs = 
-				Observable.FromEventPattern(
-					ev => AnimatedButton.ButtonClicked += ev,
-					ev => AnimatedButton.ButtonClicked -= ev);
-			obs.Subscribe(_ => 
-            {
-                Debug.WriteLine("AnimatedLoginPage. AnimatedButton clicked");
-				SlideView.LayoutTo(Target.Bounds, 250, Easing.CubicIn);
-            });
 		}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            // Show LoginView upon appearing.
+			LoginView.LayoutTo(Target.Bounds, 250, Easing.CubicIn);
+        }
 	}
 }
