@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<reactive:ReactiveContentPage xmlns:local="clr-namespace:MC;assembly=MC" x:TypeArguments="local:LoginVM" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MC.LoginPage" xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
+<reactive:ReactiveContentPage
+    xmlns:local="clr-namespace:MC;assembly=MC"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MC.LoginPage"
+    x:TypeArguments="local:LoginVM"
+    xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
     <reactive:ReactiveContentPage.Content>
         <StackLayout
             VerticalOptions="Center"
