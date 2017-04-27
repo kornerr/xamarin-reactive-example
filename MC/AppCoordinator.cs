@@ -28,8 +28,9 @@ namespace MC
 
             //_rootPage = _loginPage;
 
-            _animationPage = new AnimationPage();
-            _rootPage = _animationPage;
+            //_animationPage = new AnimationPage();
+            _animatedLoginPage = new AnimatedLoginPage();
+            _rootPage = _animatedLoginPage;
 
             setupMGR();
             setupMGRAuth();
@@ -107,6 +108,7 @@ namespace MC
         private FailurePage _failurePage;
 
         private AnimationPage _animationPage;
+        private AnimatedLoginPage _animatedLoginPage;
     }
 }
 

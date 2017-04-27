@@ -8,7 +8,8 @@
             x:Name="Main"
             Spacing="20"
             Padding="20"
-            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
 			BackgroundColor="Gray">
             <Entry
                 x:Name="Username"
