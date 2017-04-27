@@ -28,6 +28,15 @@ namespace MC
                         Processing.IsVisible = busy;
                         Main.IsVisible = !busy;
                     });
+
+            // Observe animated button press.
+            Debug.WriteLine("AnimatedButton: '{0}'", AnimatedButton);
+			var obs = 
+				Observable.FromEventPattern(
+					ev => AnimatedButton.ButtonClicked += ev,
+					ev => AnimatedButton.ButtonClicked -= ev);
+			obs.Subscribe(_ => Debug.WriteLine("LoginPage. AnimatedButton clicked"));
+			
         }
     }
 }
