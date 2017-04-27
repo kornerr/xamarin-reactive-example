@@ -8,7 +8,7 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             Padding="10"
-            BackgroundColor="Red">
+            BackgroundColor="#ccaaaa">
             <Label
                 Text="Animated button"
                 TextColor="White"
