@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="MC.SlideView">
+	<ContentView.Content>
+        <StackLayout
+            x:Name="Main"
+            Spacing="20"
+            Padding="20"
+            VerticalOptions="Center"
+			BackgroundColor="Gray">
+            <Entry
+                x:Name="Username"
+                Placeholder="Username" />
+            <Entry
+                x:Name="Password"
+                Placeholder="Password"
+                IsPassword="true" />
+            <Button
+                x:Name="Login"
+                Text="Login"
+                TextColor="White"
+                BackgroundColor="#3060DD" />
+        </StackLayout>
+	</ContentView.Content>
+</ContentView>

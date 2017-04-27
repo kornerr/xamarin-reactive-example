@@ -43,6 +43,12 @@
     <EmbeddedResource Include="AnimatedButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="SlideView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnimationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -70,6 +76,12 @@
     <Compile Include="Serialization.cs" />
     <Compile Include="AnimatedButton.xaml.cs">
       <DependentUpon>AnimatedButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SlideView.xaml.cs">
+      <DependentUpon>SlideView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AnimationPage.xaml.cs">
+      <DependentUpon>AnimationPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
