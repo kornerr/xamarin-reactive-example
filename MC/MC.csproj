@@ -46,12 +46,6 @@
     <EmbeddedResource Include="LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnimationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AnimatedLoginPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -82,12 +76,6 @@
     </Compile>
     <Compile Include="LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AnimationPage.xaml.cs">
-      <DependentUpon>AnimationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AnimatedLoginPage.xaml.cs">
-      <DependentUpon>AnimatedLoginPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
