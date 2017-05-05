@@ -21,13 +21,13 @@ namespace MC
         public AppCoordinator()
         {
             _loginVM = new LoginVM();
-            //_loginPage = new LoginPage(_loginVM);
+            _loginPage = new LoginPage(_loginVM);
 
             _successPage = new SuccessPage();
             _failurePage = new FailurePage();
 
-            //_rootPage = _loginPage;
-            _rootPage = new AnimPage();
+            _rootPage = _loginPage;
+            //_rootPage = new AnimPage();
 
             setupMGR();
             setupMGRAuth();

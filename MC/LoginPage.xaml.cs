@@ -31,18 +31,53 @@ namespace MC
 
             // Observe animated button press.
             Debug.WriteLine("AnimatedButton: '{0}'", AnimatedButton);
-			var obs = 
+            var obs = 
+                Observable.FromEventPattern(
+                    ev => AnimatedButton.ButtonClicked += ev,
+                    ev => AnimatedButton.ButtonClicked -= ev);
+            obs.Subscribe(
+                _ => {
+                    Debug.WriteLine("LoginPage. AnimatedButton clicked");
+                    LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
+                    Debug.WriteLine(
+                        "LoginPage. OnClick. Target.Bounds: '{0}x{1},{2}x{3}'",
+                        Target.Bounds.X,
+                        Target.Bounds.Y,
+                        Target.Bounds.Width,
+                        Target.Bounds.Height
+                    );
+                });
+            Debug.WriteLine("LoginPage. Constructed");
+
+			var layoutChangeObservable =
 				Observable.FromEventPattern(
-					ev => AnimatedButton.ButtonClicked += ev,
-					ev => AnimatedButton.ButtonClicked -= ev);
-			obs.Subscribe(_ => Debug.WriteLine("LoginPage. AnimatedButton clicked"));
+					ev => this.LayoutChanged += ev,
+					ev => this.LayoutChanged -= ev);
+			var appearingObservable =
+				Observable.FromEventPattern(
+					ev => this.Appearing += ev,
+					ev => this.Appearing -= ev);
+			var layoutAndAppearingObservable =
+				Observable.CombineLatest(
+					appearingObservable,
+					layoutChangeObservable).Finally(() => { Debug.WriteLine(@"Appearing or LayoutChanged"); });
+				          
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Debug.WriteLine("LoginPage. OnAppearing");
             // Show LoginView upon appearing.
-			LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
+            //LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
+            Debug.WriteLine(
+                "LoginPage. OnAppearing. Target.Bounds: '{0}x{1},{2}x{3}'",
+                Target.Bounds.X,
+                Target.Bounds.Y,
+                Target.Bounds.Width,
+                Target.Bounds.Height
+            );
         }
     }
 }

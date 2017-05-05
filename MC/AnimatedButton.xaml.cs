@@ -15,6 +15,7 @@ namespace MC
             InitializeComponent();
 
             setupTap();
+            Debug.WriteLine("AnimatedButton()");
         }
 
         private void setupTap()

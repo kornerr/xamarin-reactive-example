@@ -70,7 +70,7 @@
                     "{ConstraintExpression
                         Type=RelativeToParent,
                         Property=Height,
-                        Factor=1,
+                        Factor=0.5,
                         Constant=0}" 
                 RelativeLayout.WidthConstraint=
                     "{ConstraintExpression
@@ -82,7 +82,7 @@
                     "{ConstraintExpression
                         Type=RelativeToParent,
                         Property=Height,
-                        Factor=0.4,
+                        Factor=0.7,
                         Constant=0}">
                 <Entry
                     x:Name="Username"
