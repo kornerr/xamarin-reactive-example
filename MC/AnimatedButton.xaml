@@ -5,6 +5,7 @@
     x:Class="MC.AnimatedButton">
 	<ContentView.Content>
         <StackLayout
+            x:Name="AnimatedButtonStack"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             Padding="10"

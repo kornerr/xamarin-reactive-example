@@ -34,7 +34,7 @@ namespace MC
                     ButtonClicked(this, EventArgs.Empty);
                 }
             };
-            this.GestureRecognizers.Add(tapRecognizer);
+			AnimatedButtonStack.GestureRecognizers.Add(tapRecognizer);
         }
     }
 }
