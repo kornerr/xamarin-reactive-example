@@ -22,6 +22,7 @@ namespace MC
             var tapRecognizer = new TapGestureRecognizer();
             tapRecognizer.Tapped += async (s, e) =>
             {
+				Debug.WriteLine("AnimatedButton. Start animating");
                 await this.ScaleTo(0.95, 50, Easing.CubicOut);
                 await this.ScaleTo(1, 50, Easing.CubicIn);
 				Debug.WriteLine("AnimatedButton. Finished animating");

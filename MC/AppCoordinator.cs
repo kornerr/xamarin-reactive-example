@@ -26,7 +26,8 @@ namespace MC
             _successPage = new SuccessPage();
             _failurePage = new FailurePage();
 
-            _rootPage = _loginPage;
+            //_rootPage = _loginPage;
+            _rootPage = new AnimPage();
 
             setupMGR();
             setupMGRAuth();
