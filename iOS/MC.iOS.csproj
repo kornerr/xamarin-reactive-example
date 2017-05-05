@@ -130,8 +130,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\splashscreen.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\splashscreen_retina4.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

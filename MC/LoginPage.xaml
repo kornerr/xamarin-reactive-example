@@ -61,7 +61,7 @@
                 x:Name="LoginView"
                 Spacing="20"
                 Padding="20"
-                BackgroundColor="#f15252"
+                BackgroundColor="#2D95D1"
                 RelativeLayout.XConstraint=
                     "{ConstraintExpression
                         Type=Constant,
