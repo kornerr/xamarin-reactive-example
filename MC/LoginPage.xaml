@@ -7,9 +7,11 @@
     x:TypeArguments="local:LoginVM"
     xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
     <reactive:ReactiveContentPage.Content>
-        <RelativeLayout>
+        <RelativeLayout
+            BackgroundColor="White">
             <!-- Background image -->
             <Image
+                x:Name="Splash"
                 Source="splashscreen.png"
                 RelativeLayout.XConstraint=
                     "{ConstraintExpression
@@ -30,6 +32,29 @@
                         Type=RelativeToParent,
                         Property=Height,
                         Factor=1,
+                        Constant=0}"/>
+            <!-- Target image position -->
+            <BoxView
+                x:Name="TargetImage"
+                RelativeLayout.XConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}"
+                RelativeLayout.YConstraint=
+                    "{ConstraintExpression
+                        Type=Constant,
+                        Constant=0}"
+                RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Width,
+                        Factor=1,
+                        Constant=0}"
+                RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression
+                        Type=RelativeToParent,
+                        Property=Height,
+                        Factor=0.3,
                         Constant=0}"/>
             <!-- Target login view position -->
             <BoxView
@@ -70,7 +95,7 @@
                     "{ConstraintExpression
                         Type=RelativeToParent,
                         Property=Height,
-                        Factor=0.5,
+                        Factor=0.9,
                         Constant=0}" 
                 RelativeLayout.WidthConstraint=
                     "{ConstraintExpression

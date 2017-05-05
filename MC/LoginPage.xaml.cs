@@ -38,46 +38,37 @@ namespace MC
             obs.Subscribe(
                 _ => {
                     Debug.WriteLine("LoginPage. AnimatedButton clicked");
-                    LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
-                    Debug.WriteLine(
-                        "LoginPage. OnClick. Target.Bounds: '{0}x{1},{2}x{3}'",
-                        Target.Bounds.X,
-                        Target.Bounds.Y,
-                        Target.Bounds.Width,
-                        Target.Bounds.Height
-                    );
                 });
-            Debug.WriteLine("LoginPage. Constructed");
 
-			var layoutChangeObservable =
-				Observable.FromEventPattern(
-					ev => this.LayoutChanged += ev,
-					ev => this.LayoutChanged -= ev);
-			var appearingObservable =
-				Observable.FromEventPattern(
-					ev => this.Appearing += ev,
-					ev => this.Appearing -= ev);
-			var layoutAndAppearingObservable =
-				Observable.CombineLatest(
-					appearingObservable,
-					layoutChangeObservable).Finally(() => { Debug.WriteLine(@"Appearing or LayoutChanged"); });
-				          
-
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            Debug.WriteLine("LoginPage. OnAppearing");
-            // Show LoginView upon appearing.
-            //LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
-            Debug.WriteLine(
-                "LoginPage. OnAppearing. Target.Bounds: '{0}x{1},{2}x{3}'",
-                Target.Bounds.X,
-                Target.Bounds.Y,
-                Target.Bounds.Width,
-                Target.Bounds.Height
-            );
+            // Animate login view and image view to new positions right after appearing.
+            var layoutChangeObservable =
+                Observable.FromEventPattern(
+                    ev => this.LayoutChanged += ev,
+                    ev => this.LayoutChanged -= ev);
+            var appearingObservable =
+                Observable.FromEventPattern(
+                    ev => this.Appearing += ev,
+                    ev => this.Appearing -= ev);
+            var layoutAndAppearingObservable =
+                Observable.Merge(
+                    appearingObservable,
+                    layoutChangeObservable
+                ).Subscribe(
+                    _ => {
+                        Debug.WriteLine(
+                            "LoginPage. Layout/Appear. Target.Bounds: '{0}x{1},{2}x{3}'",
+                            Target.Bounds.X,
+                            Target.Bounds.Y,
+                            Target.Bounds.Width,
+                            Target.Bounds.Height
+                        );
+                        // Only if bounds are valid.
+                        if (Target.Bounds.Width != -1) {
+                            Debug.WriteLine("LoginPage. Layout to Target.Bounds");
+                            LoginView.LayoutTo(Target.Bounds, 500, Easing.CubicOut);
+                            Splash.LayoutTo(TargetImage.Bounds, 500, Easing.CubicOut);
+                        }
+                    });
         }
     }
 }
