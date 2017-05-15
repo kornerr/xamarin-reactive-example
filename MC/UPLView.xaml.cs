@@ -1,38 +1,31 @@
-﻿using System;
+﻿using ReactiveUI;
+using ReactiveUI.XamForms;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Windows.Input;
+using System.Reactive.Linq;
 using Xamarin.Forms;
 
 namespace MC
 {
     public partial class UPLView : ContentView
     {
-        public event EventHandler UsernameChanged;
+		//public IObservable<String> UsernameObservable;
 
         public UPLView ()
         {
             InitializeComponent();
 
-            setupUsername();
-            //setupPassword();
-            //setupLogin();
+            setupUsernamePassword();
             Debug.WriteLine("UPLView()");
         }
 
-        private void setupUsername()
+        private void setupUsernamePassword()
         {
-            Debug.WriteLine("UPLView.setupUsername");
-            Username.TextChanged += (s, e) =>
-            {
-                Debug.WriteLine("UPLView. Username change");
-                // Report.
-                if (UsernameChanged != null)
-                {
-                    Debug.WriteLine("UPLView. Username change reported");
-                    UsernameChanged(this, EventArgs.Empty);
-                }
-            };
+            var usernameObservable =
+                Observable.FromEventPattern(
+                    ev => Username.TextChanged += ev,
+                    ev => Username.TextChanged -= ev);
         }
     }
 }
