@@ -49,6 +49,9 @@
     <EmbeddedResource Include="SimpleLoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="UPLView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -84,6 +87,9 @@
       <DependentUpon>SimpleLoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SimpleLoginVM.cs" />
+    <Compile Include="UPLView.xaml.cs">
+      <DependentUpon>UPLView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">
