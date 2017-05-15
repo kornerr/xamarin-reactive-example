@@ -23,21 +23,16 @@ namespace MC
         private void setupUsername()
         {
             Debug.WriteLine("UPLView.setupUsername");
-            /*
-            var tapRecognizer = new TapGestureRecognizer();
-            tapRecognizer.Tapped += async (s, e) =>
+            Username.TextChanged += (s, e) =>
             {
-                await this.ScaleTo(0.95, 50, Easing.CubicOut);
-                await this.ScaleTo(1, 50, Easing.CubicIn);
+                Debug.WriteLine("UPLView. Username change");
                 // Report.
-                if (ButtonClicked != null)
+                if (UsernameChanged != null)
                 {
-                    Debug.WriteLine("AnimatedButton. Reporting event");
-                    ButtonClicked(this, EventArgs.Empty);
+                    Debug.WriteLine("UPLView. Username change reported");
+                    UsernameChanged(this, EventArgs.Empty);
                 }
             };
-            AnimatedButtonStack.GestureRecognizers.Add(tapRecognizer);
-            */
         }
     }
 }
