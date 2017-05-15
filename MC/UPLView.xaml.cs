@@ -3,6 +3,7 @@ using ReactiveUI.XamForms;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reactive;
 using System.Reactive.Linq;
 using Xamarin.Forms;
 
@@ -27,8 +28,9 @@ namespace MC
             Observable.Merge(
                 UsernameObservable,
                 PasswordObservable
-            ).StartWith("abc").
-                      Subscribe(_ =>
+            ).Select(_ => Unit.Default)
+             .StartWith(Unit.Default)
+             .Subscribe(_ =>
             {
                 bool isUsernameValid =
                     !String.IsNullOrWhiteSpace(Username.Text);
