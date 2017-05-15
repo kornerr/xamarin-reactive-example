@@ -14,8 +14,6 @@ namespace MC
         {
             InitializeComponent();
             ViewModel = viewModel;
-            this.Bind(ViewModel, vm => vm.Username, v => v.Username.Text);
-            this.Bind(ViewModel, vm => vm.Password, v => v.Password.Text);
         }
     }
 }

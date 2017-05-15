@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentView
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="MC.LoginView">
-	<ContentView.Content>
+<reactive:ReactiveContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:local="clr-namespace:MC"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MC.LoginView"
+    x:TypeArguments="local:LoginViewVM"
+    xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
+    <reactive:ReactiveContentView.Content>
         <StackLayout
-            x:Name="Main"
             Spacing="20"
             Padding="20"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-			BackgroundColor="#f15252">
+            BackgroundColor="#f15252">
             <Entry
                 x:Name="Username"
                 Placeholder="Username" />
@@ -24,5 +26,5 @@
                 TextColor="White"
                 BackgroundColor="#3060DD" />
         </StackLayout>
-	</ContentView.Content>
-</ContentView>
+    </reactive:ReactiveContentView.Content>
+</reactive:ReactiveContentView>

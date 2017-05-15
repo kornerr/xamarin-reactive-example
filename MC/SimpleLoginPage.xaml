@@ -8,11 +8,8 @@
     xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms" >
     <reactive:ReactiveContentPage.Content>
         <RelativeLayout>
-            <StackLayout
-                x:Name="LoginView"
-                Spacing="20"
-                Padding="20"
-                BackgroundColor="#2D95D1"
+            <local:LoginView
+                x:TypeArguments="local:LoginViewVM"
                 RelativeLayout.XConstraint=
                     "{ConstraintExpression
                         Type=Constant,
@@ -34,22 +31,7 @@
                         Type=RelativeToParent,
                         Property=Height,
                         Factor=0.5,
-                        Constant=0}">
-                <Entry
-                    x:Name="Username"
-                    Placeholder="Username"/>
-                <Entry
-                    x:Name="Password"
-                    Placeholder="Password"
-                    IsPassword="true"/>
-                <Button
-                    x:Name="Login"
-                    Text="Login"
-                    TextColor="White"
-                    BackgroundColor="#3060DD"/>
-                <local:AnimatedButton
-                    x:Name="AnimatedButton"/>
-            </StackLayout>
+                        Constant=0}"/>
         </RelativeLayout>
     </reactive:ReactiveContentPage.Content>
 </reactive:ReactiveContentPage>
