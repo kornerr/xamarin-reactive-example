@@ -24,20 +24,21 @@ namespace MC
 
         private void setupLogin()
         {
-            var credentialsObservable =
-				Observable.Merge(
-                    UsernameObservable,
-                    PasswordObservable
-                ).Subscribe(_ => {
-                    bool isUsernameValid =
-                        !String.IsNullOrWhiteSpace(Username.Text);
-                    bool isPasswordValid =
-                        !String.IsNullOrWhiteSpace(Password.Text);
-                    Login.IsEnabled =
-                        isUsernameValid &&
-                        isPasswordValid;
-                    Debug.WriteLine("Username/password changed");
-                });
+            Observable.Merge(
+                UsernameObservable,
+                PasswordObservable
+            ).StartWith("abc").
+                      Subscribe(_ =>
+            {
+                bool isUsernameValid =
+                    !String.IsNullOrWhiteSpace(Username.Text);
+                bool isPasswordValid =
+                    !String.IsNullOrWhiteSpace(Password.Text);
+                Login.IsEnabled =
+                    isUsernameValid &&
+                    isPasswordValid;
+                Debug.WriteLine("Username/password changed");
+            });
         }
         private void setupUsernamePassword()
         {
