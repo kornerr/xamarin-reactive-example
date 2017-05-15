@@ -46,9 +46,6 @@
     <EmbeddedResource Include="LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnimPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -79,9 +76,6 @@
     </Compile>
     <Compile Include="LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AnimPage.xaml.cs">
-      <DependentUpon>AnimPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
