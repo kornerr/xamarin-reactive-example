@@ -11,14 +11,10 @@ namespace MC
 {
     public partial class UPLView : ContentView
     {
-        public IObservable<System.Reactive.EventPattern<EventArgs>> UsernameObservable;
-        public IObservable<System.Reactive.EventPattern<EventArgs>> PasswordObservable;
-
         public UPLView ()
         {
             InitializeComponent();
 
-            setupUsernamePassword();
             setupLogin();
             Debug.WriteLine("UPLView()");
         }
@@ -26,8 +22,8 @@ namespace MC
         private void setupLogin()
         {
             Observable.Merge(
-                UsernameObservable,
-                PasswordObservable
+				Username.Events().TextChanged,
+				Password.Events().TextChanged
             ).Select(_ => Unit.Default)
              .StartWith(Unit.Default)
              .Subscribe(_ =>
@@ -41,13 +37,6 @@ namespace MC
                     isPasswordValid;
                 Debug.WriteLine("Username/password changed");
             });
-        }
-        private void setupUsernamePassword()
-        {
-            UsernameObservable =
-                Observable.FromEventPattern<EventArgs>(Username, "TextChanged");
-            PasswordObservable =
-                Observable.FromEventPattern<EventArgs>(Password, "TextChanged");
         }
     }
 }
