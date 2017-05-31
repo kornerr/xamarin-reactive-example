@@ -11,62 +11,74 @@ namespace MC
 {
     public partial class UPLView : ContentView
     {
-        public enum UPLViewSignal {
-            UPLViewSignalNone,
-            UPLViewSignalAuth,
-            UPLViewSignalCred
+        public enum Signal {
+            None,
+            Login,
+            Credentials
         };
-        public class UPLViewSignalEventArgs : EventArgs
+        public class SignalEventArgs : EventArgs
         {
-            public UPLViewSignal signal;
+            public Signal signal;
         };
 
-        public event EventHandler<UPLViewSignalEventArgs> UPLViewSignalEvent;
+        public event EventHandler<SignalEventArgs> SignalEvent;
 
         public UPLView ()
         {
             InitializeComponent();
 
             setupLogin();
-            Debug.WriteLine("UPLView()");
         }
 
         private void setupLogin()
         {
-            Observable.Merge(
-                Username.Events().TextChanged,
-                Password.Events().TextChanged
-            ).Select(_ => Unit.Default)
-             .StartWith(Unit.Default)
-             .Subscribe(_ =>
-            {
-                bool isUsernameValid =
-                    !String.IsNullOrWhiteSpace(Username.Text);
-                bool isPasswordValid =
-                    !String.IsNullOrWhiteSpace(Password.Text);
-                Login.IsEnabled =
-                    isUsernameValid &&
-                    isPasswordValid;
-                Debug.WriteLine("UPLView. Username/password changed");
-                if (UPLViewSignalEvent != null)
+            // Set Login state based on credentials validity.
+            Observable
+                .Merge(
+                    Username.Events().TextChanged,
+                    Password.Events().TextChanged)
+                .Select(_ => Unit.Default)
+                .StartWith(Unit.Default)
+                .Subscribe(_ =>
                 {
-                    Debug.WriteLine("UPLView. Reporting Cred event");
-					var ev = new UPLViewSignalEventArgs();
-                    ev.signal = UPLViewSignal.UPLViewSignalCred;
-                    UPLViewSignalEvent(this, ev);
+                    bool isUsernameValid =
+                        !String.IsNullOrWhiteSpace(Username.Text);
+                    bool isPasswordValid =
+                        !String.IsNullOrWhiteSpace(Password.Text);
+                    Login.IsEnabled =
+                        isUsernameValid &&
+                        isPasswordValid;
+                });
+            // Report change of credentials.
+            Observable
+                .Merge(
+                    Username.Events().TextChanged,
+                    Password.Events().TextChanged)
+                .Select(_ => Unit.Default)
+                .StartWith(Unit.Default)
+                .Subscribe(_ =>
+                {
+                    Debug.WriteLine("UPLView. Username/password changed");
+                    if (SignalEvent != null)
+                    {
+                        Debug.WriteLine("UPLView. Reporting Credentials event");
+                        var ev = new SignalEventArgs();
+                        ev.signal = Signal.Credentials;
+                        SignalEvent(this, ev);
+                    }
+                });
+            // Report login.
+            Login.Events().Clicked.Subscribe(_ =>
+            {
+                Debug.WriteLine("UPLView. Login clicked");
+                if (SignalEvent != null)
+                {
+                    Debug.WriteLine("UPLView. Reporting Login event");
+                    var ev = new SignalEventArgs();
+                    ev.signal = Signal.Login;
+                    SignalEvent(this, ev);
                 }
             });
-			Login.Events().Clicked.Subscribe(_ =>
-			{
-				Debug.WriteLine("UPLView. Login clicked");
-				if (UPLViewSignalEvent != null)
-				{
-					Debug.WriteLine("UPLView. Reporting Auth event");
-					var ev = new UPLViewSignalEventArgs();
-					ev.signal = UPLViewSignal.UPLViewSignalAuth;
-					UPLViewSignalEvent(this, ev);
-				}
-			});
         }
     }
 }

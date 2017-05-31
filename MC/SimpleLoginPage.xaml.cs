@@ -14,16 +14,16 @@ namespace MC
         {
             InitializeComponent();
             ViewModel = viewModel;
-            Debug.WriteLine("SimpleLoginPage. UPLView: '%p'", UPLView);
 
             Observable
-                .FromEventPattern<UPLView.UPLViewSignalEventArgs>(
-                    ev => UPLView.UPLViewSignalEvent += ev,
-                    ev => UPLView.UPLViewSignalEvent -= ev)
+                .FromEventPattern<UPLView.SignalEventArgs>(
+                    ev => UPLView.SignalEvent += ev,
+                    ev => UPLView.SignalEvent -= ev)
                 .Subscribe(
                     x => {
-                        Debug.WriteLine("SimpleLoginPage. Event: '{0}'", x.EventArgs.signal);
+                        Debug.WriteLine("SimpleLoginPage. UPLView signal: '{0}'", x.EventArgs.signal);
                     });
         }
     }
 }
+
