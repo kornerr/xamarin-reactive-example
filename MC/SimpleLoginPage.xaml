@@ -12,6 +12,7 @@
             <local:LoginView
                 x:TypeArguments="local:LoginViewVM"-->
             <local:UPLView
+                x:Name="UPLView"
                 RelativeLayout.XConstraint=
                     "{ConstraintExpression
                         Type=Constant,
