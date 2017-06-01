@@ -28,6 +28,9 @@ namespace MC
                 .Subscribe(username =>
                 {
                     Debug.WriteLine("SimpleLoginPage. Username: '{0}'", username);
+                    if (username == "REPLACE") {
+                        UPLView.VM.Username = "replacement";
+                    }
                 });
         }
     }

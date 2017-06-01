@@ -57,16 +57,34 @@ namespace MC
 
         private void setupCredentials()
         {
-            // Report username change.
+            // Report username.
             Username.Events().TextChanged.Subscribe(x =>
             {
 				VM.Username = x.NewTextValue;
             });
-            // Report password change.
-            Username.Events().TextChanged.Subscribe(x =>
+            // Accept username.
+            this.WhenAnyValue(x => x.VM.Username)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(username =>
+                {
+                    if (Username.Text != username) {
+                        Username.Text = username;
+                    }
+                });
+            // Report password.
+            Password.Events().TextChanged.Subscribe(x =>
             {
 				VM.Password = x.NewTextValue;
             });
+            // Accept password.
+            this.WhenAnyValue(x => x.VM.Password)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(password =>
+                {
+                    if (Password.Text != password) {
+                        Password.Text = password;
+                    }
+                });
             // Report change of credentials.
             Observable
                 .Merge(
