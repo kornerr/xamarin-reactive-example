@@ -9,34 +9,86 @@ using Xamarin.Forms;
 
 namespace MC
 {
+    // UPLView signals.
+    public enum UPLViewSignal
+    {
+        None,
+        Login,
+        Credentials
+    };
+
     public partial class UPLView : ContentView
     {
-        public enum Signal {
-            None,
-            Login,
-            Credentials
-        };
-        public class SignalEventArgs : EventArgs
+        // ViewModel reports necessary property changes.
+        public class ViewModel : ReactiveObject
         {
-            public Signal signal;
+            // Signal.
+            UPLViewSignal _signal;
+            public UPLViewSignal Signal
+            {
+                get { return _signal; }
+                set { this.RaiseAndSetIfChanged(ref _signal, value); }
+            }
+
+            // Username.
+            string _username;
+            public string Username
+            {
+                get { return _username; }
+                set { this.RaiseAndSetIfChanged(ref _username, value); }
+            }
+
+            // Password.
+            string _password;
+            public string Password
+            {
+                get { return _password; }
+                set { this.RaiseAndSetIfChanged(ref _password, value); }
+            }
         };
 
-        public event EventHandler<SignalEventArgs> SignalEvent;
+        public ViewModel VM;
 
         public UPLView ()
         {
             InitializeComponent();
-
-            setupLogin();
+            setupUPLView();
         }
 
+        private void setupCredentials()
+        {
+            // Report username change.
+            Username.Events().TextChanged.Subscribe(x =>
+            {
+				VM.Username = x.NewTextValue;
+            });
+            // Report password change.
+            Username.Events().TextChanged.Subscribe(x =>
+            {
+				VM.Password = x.NewTextValue;
+            });
+            // Report change of credentials.
+            Observable
+                .Merge(
+                    Username.Events().TextChanged,
+                    Password.Events().TextChanged
+                )
+                .Select(_ => Unit.Default)
+                .StartWith(Unit.Default)
+                .Subscribe(_ =>
+                {
+				    VM.Signal = UPLViewSignal.Credentials;
+                    VM.Signal = UPLViewSignal.None;
+                });
+        }
         private void setupLogin()
         {
             // Set Login state based on credentials validity.
             Observable
                 .Merge(
                     Username.Events().TextChanged,
-                    Password.Events().TextChanged)
+                    Password.Events().TextChanged
+                )
                 .Select(_ => Unit.Default)
                 .StartWith(Unit.Default)
                 .Subscribe(_ =>
@@ -49,36 +101,18 @@ namespace MC
                         isUsernameValid &&
                         isPasswordValid;
                 });
-            // Report change of credentials.
-            Observable
-                .Merge(
-                    Username.Events().TextChanged,
-                    Password.Events().TextChanged)
-                .Select(_ => Unit.Default)
-                .StartWith(Unit.Default)
-                .Subscribe(_ =>
-                {
-                    Debug.WriteLine("UPLView. Username/password changed");
-                    if (SignalEvent != null)
-                    {
-                        Debug.WriteLine("UPLView. Reporting Credentials event");
-                        var ev = new SignalEventArgs();
-                        ev.signal = Signal.Credentials;
-                        SignalEvent(this, ev);
-                    }
-                });
-            // Report login.
+            // Report login click.
             Login.Events().Clicked.Subscribe(_ =>
             {
-                Debug.WriteLine("UPLView. Login clicked");
-                if (SignalEvent != null)
-                {
-                    Debug.WriteLine("UPLView. Reporting Login event");
-                    var ev = new SignalEventArgs();
-                    ev.signal = Signal.Login;
-                    SignalEvent(this, ev);
-                }
+				VM.Signal = UPLViewSignal.Login;
+                VM.Signal = UPLViewSignal.None;
             });
+        }
+        private void setupUPLView()
+        {
+            VM = new ViewModel();
+            setupLogin();
+            setupCredentials();
         }
     }
 }
